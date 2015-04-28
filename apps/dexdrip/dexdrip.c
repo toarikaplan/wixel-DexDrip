@@ -45,10 +45,6 @@ radio_channel: See description in radio_link.h.
   static volatile BIT only_listen_for_my_transmitter = 1;                                           //
 // 1 is recommended                                                                                 //
 //                                                                                                  //
-  static volatile BIT do_sleep = 1;                                                                 //
-// 0 is recommended due to possible bugs                                                            //
-// if you care to test do_sleep = 1; please let me know how it works for you                        //
-//                                                                                                  //
   static volatile BIT status_lights = 1;                                                            //
 // if status_lights = 1; the yellow light flashes while actively scanning                           //
 // if a light is flashing for more than 10 minutes straight, it may not be picking up your dex      //
@@ -59,11 +55,11 @@ radio_channel: See description in radio_link.h.
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
 static XDATA volatile int start_channel = 0;
 uint32 XDATA asciiToDexcomSrc(char *addr);
 uint32 XDATA getSrcValue(char srcVal);
 volatile uint32 dex_tx_id;
+static volatile BIT do_sleep = 1; // NOTE there is no reason to change this except for debugging purposes.
 #define NUM_CHANNELS        (4)
 static int8 fOffset[NUM_CHANNELS] = {0xCE,0xD5,0xE6,0xE5};
 static XDATA int8 defaultfOffset[NUM_CHANNELS] = {0xCE,0xD5,0xE6,0xE5};
